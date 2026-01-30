@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/components/*": ["app/javascript/components/*"],
+      "@/helpers/*": ["app/javascript/helpers/*"],
+      "@/pages/*": ["app/javascript/pages/*"],
+      "@/routes/*": ["app/javascript/routes/*"]
+    }
+  }
+}
