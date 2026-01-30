@@ -1,14 +1,11 @@
-export function createSession(e) {
-  e.preventDefault();
-  return handleResponse(
-    fetch(`/auth/developer/`, createPOST({email: "example@a.com"}))
-  );
+function newSessionURL(strategy) {
+  return `/users/auth/${strategy}/`
 }
 
 function handleResponse(promise) {
   return promise.then(response => {
     if (response.ok) {
-      return response.body;
+      return response.json();
     }
     throw new Error("Network response not ok");
   })
@@ -16,12 +13,16 @@ function handleResponse(promise) {
 }
 
 function createPOST(object) {
+  const csrf = document.querySelector('meta[name="csrf-token"]').content;
+
   return {
     method: "POST",
     headers: {
-      "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]').content,
+      "X-CSRF-Token": csrf,
       "Content-Type": "application/json",
     },
     body: JSON.stringify(object),
   }
 }
+
+export { newSessionURL }
