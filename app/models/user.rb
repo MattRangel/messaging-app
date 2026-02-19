@@ -4,7 +4,7 @@ class User < ApplicationRecord
   has_many :messages
   has_and_belongs_to_many :chats
 
-  devise :database_authenticatable, :registerable,
+  devise :database_authenticatable,
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: %i[github]
 
