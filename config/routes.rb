@@ -1,9 +1,20 @@
 Rails.application.routes.draw do
-  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" } #, skip: [:sessions, :registrations]
-  #devise_scope :user do
-  #  get "sign_in", :to => "devise/sessions#new", :as => :new_user_session
-  #  get "sign_out", :to => "devise/sessions#destroy", :as => :destroy_user_session
-  #end
+  namespace :api do
+    namespace :v1 do
+      get "users/index"
+      get "users/show"
+      get "users/destroy"
+    end
+  end
+
+  if Rails.env.development?
+    devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+  else
+    devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }, skip: [:session]
+    devise_scope :user do
+      get "sign_out", :to => "devise/sessions#destroy", :as => :destroy_user_session
+    end
+  end
 
   root "homepage#index"
 
