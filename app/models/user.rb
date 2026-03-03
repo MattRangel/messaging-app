@@ -15,4 +15,11 @@ class User < ApplicationRecord
       user.name = auth.info.name
     end
   end
+
+  def filtered(is_current_user: false)
+    current_user_params = [:email]
+    self.to_json(only: [:id, :name,
+                        *(is_current_user ? current_user_params : nil)]
+                )
+  end
 end
