@@ -2,7 +2,8 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       get "users/index"
-      get "users/show"
+      get "user/current", to: "users#show_current_user"
+      get "user/:id", to: "users#show"
       get "users/destroy"
     end
   end
