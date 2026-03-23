@@ -1,5 +1,19 @@
+const apiRoot = "/api/v1"
+
 function newSessionURL(strategy) {
   return `/users/auth/${strategy}/`
+}
+
+function sendMessageToChat(text, chat_id) {
+  return handleResponse(
+    fetch(`${apiRoot}/messages/create`, createPOST({text, chat_id}))
+  );
+}
+
+function sendMessageToUsers(text, user_ids) {
+  return handleResponse(
+    fetch(`${apiRoot}/messages/create`, createPOST({text, user_ids}))
+  );
 }
 
 function handleResponse(promise) {
@@ -25,4 +39,4 @@ function createPOST(object) {
   }
 }
 
-export { newSessionURL }
+export { newSessionURL, sendMessageToChat, sendMessageToUsers }
