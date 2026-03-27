@@ -13,4 +13,8 @@ class Chat < ApplicationRecord
     self.of_users(user_ids).first ||
       self.create(user_ids: user_ids)
   end
+
+  def self.order_by_recent
+    Chat.all.includes(:messages).order("messages.created_at DESC NULLS LAST")
+  end
 end
