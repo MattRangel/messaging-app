@@ -16,6 +16,12 @@ function sendMessageToUsers(text, user_ids) {
   );
 }
 
+function getChatsList() {
+  return handleResponse(
+    fetch(`${apiRoot}/chats/index`)
+  );
+}
+
 function handleResponse(promise) {
   return promise.then(response => {
     if (response.ok) {
@@ -39,4 +45,9 @@ function createPOST(object) {
   }
 }
 
-export { newSessionURL, sendMessageToChat, sendMessageToUsers }
+export {
+  newSessionURL,
+  sendMessageToChat,
+  sendMessageToUsers,
+  getChatsList
+}
