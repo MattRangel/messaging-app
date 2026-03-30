@@ -3,7 +3,10 @@ class Api::V1::ChatsController < ApplicationController
   before_action :set_chats, only: [:index, :show]
 
   def index
-    render json: @chats
+    render json: @chats.order_by_recent.as_json(
+      only: [:id, :name],
+      include: { users: { only: [:name] } }
+    )
   end
 
   def show
