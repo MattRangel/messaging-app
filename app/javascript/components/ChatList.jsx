@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { getChatsList } from "@/helpers/messagingAPI";
+import styles from "./ChatList.module.css";
 
-function ChatList() {
+function ChatList({activeChatID}) {
   const [chats, setChats] = useState([]);
 
   const updateChats = () => {
@@ -12,7 +13,12 @@ function ChatList() {
   return (
     <ul>
       {chats.map((chat) => (
-        <li key={chat.id}>{chat.name || "Unnamed Chat"}</li>
+        <li
+          key={chat.id}
+          className={chat.id == activeChatID && styles.active}
+        >
+          {chat.name || "Unnamed Chat"}
+        </li>
       ))}
     </ul>
   );
