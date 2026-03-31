@@ -1,3 +1,20 @@
-.active {
-  font-weight: bold;
+.chat-list {
+  & button {
+    cursor: pointer;
+    width: 100%;
+    padding: .5rem 1rem;
+    border: none;
+  }
+
+  & button:disabled {
+    background-color: lightgray;
+    color: black;
+    cursor: default;
+  }
+
+  & li {
+  }
+
+  width: fit-content;
+  list-style: none;
 }

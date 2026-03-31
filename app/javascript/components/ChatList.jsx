@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { getChatsList } from "@/helpers/messagingAPI";
 import styles from "./ChatList.module.css";
 
-function ChatList({activeChatID}) {
+function ChatList({activeChatID, setActiveChatID}) {
   const [chats, setChats] = useState([]);
 
   const updateChats = () => {
@@ -11,15 +11,22 @@ function ChatList({activeChatID}) {
   useEffect(() => updateChats(), []);
 
   return (
-    <ul>
-      {chats.map((chat) => (
-        <li
-          key={chat.id}
-          className={chat.id == activeChatID && styles.active}
-        >
-          {chat.name || "Unnamed Chat"}
-        </li>
-      ))}
+    <ul className={styles["chat-list"]}>
+      {chats.map((chat) => {
+        const isActive = chat.id == activeChatID;
+        return (
+          <li
+            key={chat.id}
+          >
+            <button
+              disabled={isActive}
+              onClick={() => {setActiveChatID(chat.id)}}
+            >
+              {chat.name || "Unnamed Chat"}
+            </button>
+          </li>
+        )
+      })}
     </ul>
   );
 
