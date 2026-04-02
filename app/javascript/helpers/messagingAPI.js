@@ -22,6 +22,12 @@ function getChatsList() {
   );
 }
 
+function getChat(chat_id) {
+  return handleResponse(
+    fetch(`${apiRoot}/chat/${chat_id}`)
+  );
+}
+
 function handleResponse(promise) {
   return promise.then(response => {
     if (response.ok) {
@@ -49,5 +55,6 @@ export {
   newSessionURL,
   sendMessageToChat,
   sendMessageToUsers,
-  getChatsList
+  getChatsList,
+  getChat
 }
