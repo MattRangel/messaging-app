@@ -24,6 +24,7 @@ function Chat({chatID}) {
       <div>
         {chatObject.messages.map((message) => (
           <Message
+            key={message.id}
             text={message.text}
             user={getUser(message.user_id)}
             time={message.created_at}
