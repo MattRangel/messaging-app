@@ -18,6 +18,16 @@ function Chat({chatID}) {
     chatObject.users.find(usr => usr.id == id)
   );
 
+  const appendMessage = (message) => {
+    setChatObject(chatObject => ({
+      ...chatObject,
+      messages: [
+        ...chatObject.messages,
+        message
+      ]
+    }));
+  }
+
   return (
     <div className={styles.chat}>
       <h2>Now viewing chat ID: {chatObject?.id} Name: {chatObject?.name}</h2>
