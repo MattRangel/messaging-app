@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 //import { **getChat**, **sendMessage** } from "@/helpers/messagingAPI";
 import { getChat } from "@/helpers/messagingAPI";
 import Message from "@/components/Message";
+import styles from "./Chat.module.css";
 
 function Chat({chatID}) {
   const [chatObject, setChatObject] = useState({
@@ -18,7 +19,7 @@ function Chat({chatID}) {
   );
 
   return (
-    <div>
+    <div className={styles.chat}>
       <h2>Now viewing chat ID: {chatObject?.id} Name: {chatObject?.name}</h2>
       <div>
         {chatObject.messages.map((message) => (
