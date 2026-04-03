@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 //import { **getChat**, **sendMessage** } from "@/helpers/messagingAPI";
 import { getChat } from "@/helpers/messagingAPI";
 import Message from "@/components/Message";
+import SendMessage from "@/components/SendMessage";
 import styles from "./Chat.module.css";
 
 function Chat({chatID}) {
@@ -41,6 +42,7 @@ function Chat({chatID}) {
           />
         ))}
       </div>
+      <SendMessage chatID={chatID} onSent={appendMessage}/>
     </div>
   );
 }
