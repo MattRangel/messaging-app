@@ -4,13 +4,13 @@ function newSessionURL(strategy) {
   return `/users/auth/${strategy}/`
 }
 
-function sendMessageToChat(text, chat_id) {
+function sendMessageToChat({text, chat_id}) {
   return handleResponse(
     fetch(`${apiRoot}/messages/create`, createPOST({text, chat_id}))
   );
 }
 
-function sendMessageToUsers(text, user_ids) {
+function sendMessageToUsers({text, user_ids}) {
   return handleResponse(
     fetch(`${apiRoot}/messages/create`, createPOST({text, user_ids}))
   );
