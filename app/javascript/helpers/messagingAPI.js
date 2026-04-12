@@ -28,6 +28,12 @@ function getChat(chat_id) {
   );
 }
 
+function getCurrentUser() {
+  return handleResponse(
+    fetch(`${apiRoot}/user/current`)
+  )
+}
+
 function handleResponse(promise, returnOnError) {
   return promise.then(response => {
     if (response.ok) {
@@ -59,5 +65,6 @@ export {
   sendMessageToChat,
   sendMessageToUsers,
   getChatsList,
-  getChat
+  getChat,
+  getCurrentUser
 }
