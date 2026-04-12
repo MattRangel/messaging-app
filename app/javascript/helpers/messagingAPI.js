@@ -28,14 +28,17 @@ function getChat(chat_id) {
   );
 }
 
-function handleResponse(promise) {
+function handleResponse(promise, returnOnError) {
   return promise.then(response => {
     if (response.ok) {
       return response.json();
     }
     throw new Error("Network response not ok");
   })
-  .catch(error => console.log(error.message));
+  .catch(error => {
+    console.log(error.message);
+    return null;
+  });
 }
 
 function createPOST(object) {
