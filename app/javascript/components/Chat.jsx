@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-//import { **getChat**, **sendMessage** } from "@/helpers/messagingAPI";
 import { getChat } from "@/helpers/messagingAPI";
 import Message from "@/components/Message";
 import SendMessage from "@/components/SendMessage";
