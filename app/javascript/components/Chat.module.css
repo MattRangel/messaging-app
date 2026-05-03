@@ -1,3 +1,11 @@
 .chat {
   background-color: lightblue;
 }
+
+.message {
+  background-color: lime;
+}
+
+.message.from-self {
+  text-align: right;
+}

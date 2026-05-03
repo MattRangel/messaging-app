@@ -1,10 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { getChat } from "@/helpers/messagingAPI";
+import { CurrentUserContext } from "@/helpers/context";
 import Message from "@/components/Message";
 import SendMessage from "@/components/SendMessage";
 import styles from "./Chat.module.css";
 
 function Chat({chatID}) {
+  const currentUser = useContext(CurrentUserContext);
   const [chatObject, setChatObject] = useState({
     messages: [],
     users: []
@@ -33,12 +35,19 @@ function Chat({chatID}) {
       <h2>Now viewing chat ID: {chatObject?.id} Name: {chatObject?.name}</h2>
       <div>
         {chatObject.messages.map((message) => (
-          <Message
+          <div
+            className={`
+              ${styles.message}
+              ${(currentUser.id == message.user_id) ? styles["from-self"] : ""}
+            `}
             key={message.id}
-            text={message.text}
-            user={getUser(message.user_id)}
-            time={message.created_at}
-          />
+          >
+            <Message
+              text={message.text}
+              user={getUser(message.user_id)}
+              time={message.created_at}
+            />
+          </div>
         ))}
       </div>
       <SendMessage chatID={chatID} onSent={appendMessage}/>
