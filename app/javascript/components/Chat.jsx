@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext, useRef } from "react";
 import { getChat } from "@/helpers/messagingAPI";
 import { useLoaderData } from "react-router";
 import Message from "@/components/Message";
@@ -6,6 +6,7 @@ import SendMessage from "@/components/SendMessage";
 import styles from "./Chat.module.css";
 
 function Chat({chatID}) {
+  const messages = useRef();
   const { currentUser } = useLoaderData();
   const [chatObject, setChatObject] = useState({
     messages: [],
@@ -15,6 +16,7 @@ function Chat({chatID}) {
     !isNaN(chatID) && getChat(chatID).then(setChatObject);
   }
   useEffect(updateChatObject, [chatID]);
+  useEffect(() => { messages.current.lastElementChild?.scrollIntoView() }, [chatObject]);
 
   const getUser = (id) => (
     chatObject.users.find(usr => usr.id == id)
@@ -33,7 +35,7 @@ function Chat({chatID}) {
   return (
     <div className={styles.chat}>
       <h2>Now viewing chat ID: {chatObject?.id} Name: {chatObject?.name}</h2>
-      <div>
+      <div className={styles.messages} ref={messages}>
         {chatObject.messages.map((message) => (
           <div
             className={`
