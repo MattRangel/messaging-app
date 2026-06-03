@@ -1,11 +1,39 @@
 .chat {
   background-color: lightblue;
+  padding: 1rem 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.messages {
+  margin: 1rem 0;
+  display: grid;
+  grid-template-columns: auto;
+  gap: 1rem;
+  overflow: scroll;
+  flex: 1 1 0;
 }
 
 .message {
-  background-color: lime;
+  border-left: .4rem solid black;
+  width: fit-content;
+  padding: .5rem 1rem;
+  background-color: white;
+  word-wrap: break-word;
+  max-width: 40rem;
 }
 
 .message.from-self {
+  border-right: .4rem solid black;
+  border-left: none;
   text-align: right;
+  justify-self: end;
+}
+
+.send-message {
+  display: flex;
+
+  & button {
+    background-color: pink;
+  }
 }

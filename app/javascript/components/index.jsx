@@ -2,13 +2,18 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import routes from "@/routes/";
+import "./global.css";
+import Header from "@/components/Header";
 
 const router = createBrowserRouter(routes);
 
 document.addEventListener("turbo:load", () => {
-  createRoot(document.body.appendChild(document.createElement("div"))).render(
+  createRoot(document.body).render(
     <StrictMode>
-      <RouterProvider router={router} />
+      <Header />
+      <main>
+        <RouterProvider router={router} />
+      </main>
     </StrictMode>
   );
 });

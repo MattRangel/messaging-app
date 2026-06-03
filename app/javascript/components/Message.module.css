@@ -1,0 +1,8 @@
+.datetime, .username {
+  margin: .5rem 0;
+  color: #272727;
+}
+
+.datetime {
+  font-weight: normal;
+}
