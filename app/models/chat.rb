@@ -17,4 +17,14 @@ class Chat < ApplicationRecord
   def self.order_by_recent
     Chat.all.includes(:messages).order("messages.created_at DESC NULLS LAST")
   end
+
+  def filtered_json
+    self.as_json(
+      only: [:id, :name],
+      include: {
+        users: { only: [:name, :id] },
+        messages: { only: [:id, :text, :user_id, :created_at] }
+      }
+    )
+  end
 end

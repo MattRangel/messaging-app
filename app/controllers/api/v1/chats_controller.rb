@@ -10,13 +10,7 @@ class Api::V1::ChatsController < ApplicationController
   end
 
   def show
-    render json: @chats.find(params[:id]).as_json(
-      only: [:id, :name],
-      include: {
-        users: { only: [:name, :id] },
-        messages: { only: [:id, :text, :user_id, :created_at] }
-      }
-    )
+    render json: @chats.find(params[:id]).filtered_json
   end
 
   private
