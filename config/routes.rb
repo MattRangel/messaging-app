@@ -4,6 +4,7 @@ Rails.application.routes.draw do
       post "messages/create"
       get "chats/index"
       get "chat/:id", to: "chats#show"
+      post "chats/create"
       get "users/index"
       get "user/current", to: "users#show_current_user"
       get "user/:id", to: "users#show"
@@ -11,13 +12,9 @@ Rails.application.routes.draw do
     end
   end
 
-  if Rails.env.development?
-    devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
-  else
-    devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }, skip: [:session]
-    devise_scope :user do
-      get "sign_out", :to => "devise/sessions#destroy", :as => :destroy_user_session
-    end
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }, skip: [:session]
+  devise_scope :user do
+    get "sign_out", :to => "devise/sessions#destroy", :as => :destroy_user_session
   end
 
   root "homepage#index"
