@@ -40,7 +40,7 @@ function Chat({chatID}) {
           <div
             className={`
               ${styles.message}
-              ${(currentUser.id == message.user_id) ? styles["from-self"] : ""}
+              ${(currentUser?.id == message.user_id) ? styles["from-self"] : ""}
             `}
             key={message.id}
           >
