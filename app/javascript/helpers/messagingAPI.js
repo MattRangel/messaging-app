@@ -28,6 +28,12 @@ function getChat(chat_id) {
   );
 }
 
+function createChat({name, user_ids}) {
+  return handleResponse(
+    fetch(`${apiRoot}/chats/create`, createPOST({name, user_ids}))
+  );
+}
+
 function getCurrentUser() {
   return handleResponse(
     fetch(`${apiRoot}/user/current`)
@@ -66,5 +72,6 @@ export {
   sendMessageToUsers,
   getChatsList,
   getChat,
+  createChat,
   getCurrentUser
 }
