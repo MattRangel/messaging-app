@@ -13,6 +13,11 @@ class Api::V1::ChatsController < ApplicationController
     render json: @chats.find(params[:id]).filtered_json
   end
 
+  def create
+    chat = Chat.find_or_create_of_users([current_user.id, *params[:user_ids]], params[:name])
+    render json: chat.filtered_json
+  end
+
   private
   def set_chats
     @chats = current_user.chats
