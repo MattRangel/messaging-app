@@ -1,13 +1,15 @@
 import { useState, useEffect, useContext, useRef } from "react";
+import { useParams } from "react-router";
 import { getChat } from "@/helpers/messagingAPI";
-import { useLoaderData } from "react-router";
+import { CurrentUserContext } from "@/helpers/CurrentUserContext";
 import Message from "@/components/Message";
 import SendMessage from "@/components/SendMessage";
 import styles from "./Chat.module.css";
 
-function Chat({chatID}) {
+function Chat() {
+  const { chatID } = useParams();
   const messages = useRef();
-  const { currentUser } = useLoaderData();
+  const { currentUser } = useContext(CurrentUserContext);
   const [chatObject, setChatObject] = useState({
     messages: [],
     users: []
