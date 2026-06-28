@@ -1,6 +1,10 @@
 .chat-list {
+  & .new-chat {
+    margin-bottom: 1rem;
+    font-weight: bold;
+  }
+
   & button {
-    cursor: pointer;
     width: 100%;
     padding: .5rem 1rem;
     border: none;
