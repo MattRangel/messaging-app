@@ -1,17 +1,25 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import ChatList from "@/components/ChatList";
 import Chat from "@/components/Chat";
+import NewChatDialog from "@/components/NewChatDialog";
 import styles from "./style.module.css";
 
-function Home() {
-  const [activeChatID, setActiveChatID] = useState(undefined);
+function Chats() {
+  const dialog = useRef();
+
+  const showDialog = () => {
+    dialog.current.showModal();
+  }
 
   return (
     <div className={styles.area}>
-      <ChatList activeChatID={activeChatID} setActiveChatID={setActiveChatID}/>
-      <Chat chatID={activeChatID}/>
+      <NewChatDialog dialogRef={dialog}/>
+      <ChatList
+        newChatOnClick={showDialog}
+      />
+      <Chat />
     </div>
   );
 }
 
-export default Home;
+export default Chats;
