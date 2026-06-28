@@ -9,9 +9,9 @@ class Chat < ApplicationRecord
       .having("SUM(CASE WHEN users.id IN (?) THEN 1 ELSE 0 END) = ?", user_ids, user_ids.size)
   }
 
-  def self.find_or_create_of_users(user_ids)
+  def self.find_or_create_of_users(user_ids, name)
     self.of_users(user_ids).first ||
-      self.create(user_ids: user_ids)
+      self.create(user_ids: user_ids, name: name)
   end
 
   def self.order_by_recent
