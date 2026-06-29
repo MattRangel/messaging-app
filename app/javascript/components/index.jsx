@@ -12,10 +12,7 @@ document.addEventListener("turbo:load", () => {
   createRoot(document.body).render(
     <StrictMode>
       <CurrentUserProvider>
-        <Header />
-        <main>
-          <RouterProvider router={router} />
-        </main>
+        <RouterProvider router={router} />
       </CurrentUserProvider>
     </StrictMode>
   );

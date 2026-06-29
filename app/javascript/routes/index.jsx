@@ -1,5 +1,7 @@
 import React from "react";
 import { redirect } from "react-router";
+import { Outlet } from "react-router-dom";
+import Header from "@/components/Header";
 import Home from "@/pages/home";
 import Chats from "@/pages/chats";
 import Login from "@/pages/login";
@@ -12,21 +14,35 @@ async function requireLogin() {
   }
 }
 
-const routes = [
-  {
-    index: true,
-    element: <Home />,
-    middleware: [requireLogin],
-  },
-  {
-    path: "/chats/:chatID?",
-    element: <Chats />,
-    middleware: [requireLogin],
-  },
-  {
-    path: "login",
-    element: <Login />,
-  },
-];
+function Layout() {
+  return (
+    <>
+      <Header/>
+      <main>
+        <Outlet />
+      </main>
+    </>
+  );
+}
+
+const routes = [{
+  element: <Layout />,
+  children: [
+    {
+      index: true,
+      element: <Home />,
+      middleware: [requireLogin],
+    },
+    {
+      path: "/chats/:chatID?",
+      element: <Chats />,
+      middleware: [requireLogin],
+    },
+    {
+      path: "login",
+      element: <Login />,
+    },
+  ],
+}];
 
 export default routes;
