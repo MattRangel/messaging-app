@@ -7,11 +7,12 @@ import Chats from "@/pages/chats";
 import Login from "@/pages/login";
 import { getCurrentUser } from "@/helpers/messagingAPI";
 
-async function requireLogin() {
+async function currentUserLoader() {
   const currentUser = await getCurrentUser();
   if (!currentUser) {
     throw redirect("/login");
   }
+  return { currentUser };
 }
 
 function Layout() {
@@ -25,24 +26,27 @@ function Layout() {
   );
 }
 
-const routes = [{
-  element: <Layout />,
-  children: [
-    {
-      index: true,
-      element: <Home />,
-      middleware: [requireLogin],
-    },
-    {
-      path: "/chats/:chatID?",
-      element: <Chats />,
-      middleware: [requireLogin],
-    },
-    {
-      path: "login",
-      element: <Login />,
-    },
-  ],
-}];
+const routes = [
+  {
+    element: <Layout />,
+    children: [
+      {
+        index: true,
+        element: <Home />,
+        loader: currentUserLoader,
+      },
+      {
+        path: "/chats/:chatID?",
+        element: <Chats />,
+        loader: currentUserLoader,
+      },
+      {
+        path: "login",
+        element: <Login />,
+        loader: currentUserLoader,
+      },
+    ],
+  },
+];
 
 export default routes;
