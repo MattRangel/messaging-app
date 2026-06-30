@@ -4,6 +4,7 @@ import { Outlet } from "react-router-dom";
 import Header from "@/components/Header";
 import Home from "@/pages/home";
 import Chats from "@/pages/chats";
+import Account from "@/pages/account";
 import Login from "@/pages/login";
 import { getCurrentUser } from "@/helpers/messagingAPI";
 
@@ -41,11 +42,15 @@ const routes = [
         loader: currentUserLoader,
       },
       {
-        path: "login",
-        element: <Login />,
+        path: "/account",
+        element: <Account />,
         loader: currentUserLoader,
       },
     ],
+  },
+  {
+    path: "login",
+    element: <Login />,
   },
 ];
 
