@@ -18,6 +18,12 @@ class Api::V1::UsersController < ApplicationController
   def destroy
   end
 
+  def update_current
+    current_user.update({
+      name: params[:name]
+    })
+  end
+
   private
   def set_user
     @user = User.find(params[:id])

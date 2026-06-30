@@ -7,6 +7,7 @@ Rails.application.routes.draw do
       post "chats/create"
       get "users/index"
       get "user/current", to: "users#show_current_user"
+      post "user/current/update", to: "users#update_current"
       get "user/:id", to: "users#show"
       get "users/destroy"
     end
