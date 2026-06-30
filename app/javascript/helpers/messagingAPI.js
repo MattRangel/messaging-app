@@ -40,6 +40,12 @@ function getCurrentUser() {
   )
 }
 
+async function updateUser({name}) {
+  return handleResponse(
+    fetch(`${apiRoot}/user/current/update`, createPOST({name}))
+  );
+}
+
 function handleResponse(promise, returnOnError) {
   return promise.then(response => {
     if (response.ok) {
@@ -73,5 +79,6 @@ export {
   getChatsList,
   getChat,
   createChat,
-  getCurrentUser
+  getCurrentUser,
+  updateUser,
 }
