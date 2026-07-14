@@ -1,24 +1,57 @@
+.toggle-menu {
+  display: none;
+}
+
+.menu {
+  width: 20%;
+  min-width: 10rem;
+}
+
+.new-chat {
+  font-weight: bold;
+  padding: .7rem 1rem;
+  background-color: #e9e9ed;
+  width: 100%;
+}
+
 .chat-list {
-  & .new-chat {
-    margin-bottom: 1rem;
-    font-weight: bold;
-  }
-
-  & button {
-    width: 100%;
-    padding: .5rem 1rem;
-    border: none;
-  }
-
-  & button:disabled {
-    background-color: lightgray;
+  & a {
     color: black;
+  }
+
+  & a.active {
+    font-style: italic;
+    color: #282828;;
     cursor: default;
+    text-decoration: none;
   }
 
   & li {
+    margin: 1rem 0;
   }
 
   width: fit-content;
-  list-style: none;
+}
+
+@media (orientation: portrait) {
+  .portrait-hidden {
+    display: none;
+  }
+
+  .toggle-menu {
+    font-weight: bold;
+    display: block;
+    height: 2rem;
+  }
+
+  .menu {
+    margin-top: 2rem;
+    width: 100%;
+    position: absolute;
+    background-color: white;
+  }
+
+  .chat-list {
+    padding-left: 4rem;
+  }
 }
