@@ -1,8 +1,44 @@
 .header {
   background-color: lightgrey;
   padding: 1rem;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
 
   & h1 {
-    margin: 0;
+    & a { text-decoration: none; }
+    margin: 0 auto 0 0;
+    display: inline;
+  }
+
+  & a {
+    color: black;
+  }
+}
+
+.hamburger {
+  display: none;
+}
+
+.menu {
+  display: inline;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+@media (orientation: portrait) {
+  .menu {
+    margin-top: 2rem;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .portrait-hidden {
+    display: none;
+  }
+
+  .hamburger {
+    display: block;
   }
 }

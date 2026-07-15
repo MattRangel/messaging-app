@@ -1,5 +1,16 @@
 button {
+  padding: .5rem 1rem;
   cursor: pointer;
+  background-color: #dbdbdb;
+  padding: .3rem 1rem;
+  border: none;
+  &:hover {
+    background-color: #d0d0d7;
+  }
+
+  &:hover:active {
+    background-color: #b1b1b9;
+  }
 }
 
 body {
@@ -11,7 +22,4 @@ body {
 
 main {
   flex: 1;
-  & > * {
-    height: 100%;
-  }
 }

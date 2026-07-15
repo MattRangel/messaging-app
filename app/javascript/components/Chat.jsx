@@ -35,7 +35,10 @@ function Chat() {
 
   return (
     <div className={styles.chat}>
-      <h2>Now viewing chat ID: {chatObject?.id} Name: {chatObject?.name}</h2>
+      <h2>
+        <span className={styles["chat-id"]}>[{chatObject?.id}]</span>
+        {chatObject?.name || "Unnamed Chat"}
+      </h2>
       <div className={styles.messages} ref={messages}>
         {chatObject.messages.map((message) => (
           <div

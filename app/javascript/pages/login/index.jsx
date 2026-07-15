@@ -1,10 +1,12 @@
+import styles from "./styles.module.css";
 import LoginWith from "@/components/auth/LoginWith";
+
 function Login() {
   return (
-    <>
-      <h1>Login / Create Account</h1>
+    <div className={styles.content}>
+      <h1>Login<span> or </span>Create Account</h1>
       <LoginWith strategy="github" name="GitHub"/>
-    </>
+    </div>
   )
 };
 

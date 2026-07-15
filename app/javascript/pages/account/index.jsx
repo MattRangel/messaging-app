@@ -1,3 +1,4 @@
+import styles from "./style.module.css";
 import { useState } from "react";
 import { useLoaderData } from "react-router";
 import { updateUser } from "@/helpers/messagingAPI";
@@ -13,7 +14,7 @@ function Account() {
   }
 
   return (
-    <>
+    <div className={styles.content}>
       <h1>Manage your account</h1>
       <p><b>User ID:</b> {currentUser.id}</p>
       <p><b>Email:</b> {currentUser.email}</p>
@@ -26,7 +27,7 @@ function Account() {
         </label>
         <button>Submit</button>
       </form>
-    </>
+    </div>
   );
 }
 
